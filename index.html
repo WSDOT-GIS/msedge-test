@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Test</title>
+    <link rel="stylesheet" href="https://js.arcgis.com/3.24/esri/themes/calcite/dijit/calcite.css">
+    <link rel="stylesheet" href="https://js.arcgis.com/3.24/esri/themes/calcite/esri/esri.css">
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body class="calcite">
+    <div class="container">
+        <div id="map"></div>
+        <div id="basemaps"></div>
+    </div>
+    <script>
+        (function () {
+            const dojoConfig = {
+                packages: [
+                    {
+                        name: "app",
+                        location: location.href.replace(/\/((index\.html)?)?$/, "/dist")
+                    }
+                ]
+            };
+            window.dojoConfig = dojoConfig;
+        }());
+    </script>
+    <script src="https://js.arcgis.com/3.24/"></script>
+    <script>require(["app"])</script>
+</body>
+
+</html>
