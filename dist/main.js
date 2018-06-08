@@ -164,6 +164,7 @@ define(["require", "exports", "esri/config", "esri/dijit/Basemap", "esri/dijit/B
     var map = new EsriMap("map", {
         extent: extent,
         lods: lods,
+        maxZoom: 12,
         basemap: wsdotBasemap
     });
     var basemapGallery = new BasemapGallery({

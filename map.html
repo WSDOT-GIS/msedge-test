@@ -8,14 +8,22 @@
     <title>Test</title>
     <link rel="stylesheet" href="https://js.arcgis.com/3.24/esri/themes/calcite/dijit/calcite.css">
     <link rel="stylesheet" href="https://js.arcgis.com/3.24/esri/themes/calcite/esri/esri.css">
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="map.css">
 </head>
 
 <body class="calcite">
-    <div class="container">
-        <div id="map"></div>
-        <div id="basemaps"></div>
+    <div id="container">
+        <header>
+            <h1>Map Test</h1>
+        </header>
+        <div id="main">
+            <div id="map"></div>
+            <div id="tools">
+                <div id="basemaps"></div>
+            </div>
+        </div>
     </div>
+
     <script>
         (function () {
             const dojoConfig = {
@@ -29,7 +37,8 @@
             window.dojoConfig = dojoConfig;
         }());
     </script>
-    <script src="https://js.arcgis.com/3.24/init.js" integrity="sha384-d3/yJY8yRh6+P0mDJiw+AUk3XMgvO4Q735PrL8HCBQ4DK6ab4/xwyzlkIWiIw2rS" crossorigin="anonymous"></script>
+    <script src="https://js.arcgis.com/3.24/init.js" integrity="sha384-d3/yJY8yRh6+P0mDJiw+AUk3XMgvO4Q735PrL8HCBQ4DK6ab4/xwyzlkIWiIw2rS"
+        crossorigin="anonymous"></script>
     <script>require(["app"])</script>
 </body>
 

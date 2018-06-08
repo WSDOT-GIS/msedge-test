@@ -174,6 +174,7 @@ const wsdotBasemap = new Basemap({
 const map = new EsriMap("map", {
   extent,
   lods,
+  maxZoom: 12,
   basemap: wsdotBasemap as any
 });
 

@@ -1,0 +1,40 @@
+html,
+body,
+#map {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+}
+
+body {
+  overflow: hidden;
+}
+
+header {
+  padding: 0.2em 0.5em;
+}
+
+#container {
+  height: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+#main {
+  flex: 1;
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+#map {
+  flex: 1;
+}
+
+#tools {
+  padding: 0.5em;
+  overflow-y: auto;
+}
+
+#basemaps {
+  max-width: 250px;
+}
