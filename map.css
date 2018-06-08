@@ -1,13 +1,15 @@
-html, body, .container, #map {
+html,
+body,
+.container,
+#map {
   height: 100%;
 }
 
-html, body, .container {
+html,
+body,
+.container {
   padding: 0;
   margin: 0;
   display: flex;
   flex-flow: column;
 }
-
-
-
