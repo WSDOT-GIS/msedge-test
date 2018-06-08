@@ -1,6 +1,12 @@
-define(["require", "exports", "esri/dijit/Basemap", "esri/dijit/BasemapGallery", "esri/dijit/BasemapLayer", "esri/geometry/Extent", "esri/layers/LOD", "esri/map"], function (require, exports, Basemap, BasemapGallery, BasemapLayer, Extent, LOD, EsriMap) {
+define(["require", "exports", "esri/config", "esri/dijit/Basemap", "esri/dijit/BasemapGallery", "esri/dijit/BasemapLayer", "esri/geometry/Extent", "esri/layers/LOD", "esri/map"], function (require, exports, esriConfig, Basemap, BasemapGallery, BasemapLayer, Extent, LOD, EsriMap) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
+    // Inform the API that data.wsdot.wa.gov supports CORS and HTTPS.
+    for (var _i = 0, _a = ["data.wsdot.wa.gov"]; _i < _a.length; _i++) {
+        var url = _a[_i];
+        esriConfig.defaults.io.corsEnabledServers.push(url);
+        esriConfig.defaults.io.httpsDomains.push(url);
+    }
     /**
      * Extent of WA.
      * @see https://epsg.io/1416-area
@@ -12,6 +18,7 @@ define(["require", "exports", "esri/dijit/Basemap", "esri/dijit/BasemapGallery",
         ymax: 49.05,
         spatialReference: { wkid: 4326 }
     });
+    // Define LODs from Esri service.
     var lods = [
         {
             level: 0,
@@ -134,6 +141,7 @@ define(["require", "exports", "esri/dijit/Basemap", "esri/dijit/BasemapGallery",
             scale: 70.5310735
         }
     ].map(function (lod) {
+        // Convert generic objects to LOD objects.
         var output = new LOD();
         var level = lod.level, resolution = lod.resolution, scale = lod.scale;
         output.level = level;
@@ -141,12 +149,14 @@ define(["require", "exports", "esri/dijit/Basemap", "esri/dijit/BasemapGallery",
         output.scale = scale;
         return output;
     });
+    var basemapUrl = "https://data.wsdot.wa.gov/arcgis/rest/services/Shared/WebBaseMapWebMercator/MapServer";
+    // Create the basemap object.
     var wsdotBasemap = new Basemap({
         id: "wsdot",
         thumbnailUrl: "images/WSDOTBaseMap_map.png",
         layers: [
             new BasemapLayer({
-                url: "https://data.wsdot.wa.gov/arcgis/rest/services/Shared/WebBaseMapWebMercator/MapServer"
+                url: basemapUrl
             })
         ],
         title: "WSDOT"

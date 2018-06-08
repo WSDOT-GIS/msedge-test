@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Fetch test</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <h1>Test</h1>
+    <p>This page tests the browser's ability to load JSON data from a map service. The resonse will be written to the textarea below and more detailed information will be logged to the console.</p>
+    <progress id="progressBar">Please wait</progress>
+    <textarea id="textarea" style="width: 100%" rows="20"></textarea>
+    <script>
+        (async () => {
+            const basemapUrl = "https://data.wsdot.wa.gov/arcgis/rest/services/Shared/WebBaseMapWebMercator/MapServer?f=json";
+            const textArea = document.getElementById("textarea");
+            try {
+                const response = await fetch(basemapUrl);
+                const info = await response.text();
+                textArea.textContent = info;
+
+            } catch (error) {
+                const errorText = error.message;
+                textArea.textContent = errorText;
+                console.error(error.message, error);
+            }
+            const progBar = document.getElementById("progressBar");
+            progBar.remove();
+        })();
+    </script>
+</body>
+
+</html>
