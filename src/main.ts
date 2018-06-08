@@ -1,9 +1,17 @@
+import esriConfig = require("esri/config");
 import Basemap = require("esri/dijit/Basemap");
 import BasemapGallery = require("esri/dijit/BasemapGallery");
 import BasemapLayer = require("esri/dijit/BasemapLayer");
 import Extent = require("esri/geometry/Extent");
 import LOD = require("esri/layers/LOD");
 import EsriMap = require("esri/map");
+
+// Inform the API that data.wsdot.wa.gov supports CORS and HTTPS.
+for (const url of ["data.wsdot.wa.gov"]) {
+  esriConfig.defaults.io.corsEnabledServers.push(url);
+  esriConfig.defaults.io.httpsDomains.push(url);
+}
+
 /**
  * Extent of WA.
  * @see https://epsg.io/1416-area
@@ -16,6 +24,7 @@ const extent = new Extent({
   spatialReference: { wkid: 4326 }
 });
 
+// Define LODs from Esri service.
 const lods = [
   {
     level: 0,
@@ -138,6 +147,7 @@ const lods = [
     scale: 70.5310735
   }
 ].map(lod => {
+  // Convert generic objects to LOD objects.
   const output = new LOD();
   const { level, resolution, scale } = lod;
   output.level = level;
@@ -146,13 +156,16 @@ const lods = [
   return output;
 });
 
+const basemapUrl =
+  "https://data.wsdot.wa.gov/arcgis/rest/services/Shared/WebBaseMapWebMercator/MapServer";
+
+// Create the basemap object.
 const wsdotBasemap = new Basemap({
   id: "wsdot",
   thumbnailUrl: "images/WSDOTBaseMap_map.png",
   layers: [
     new BasemapLayer({
-      url:
-        "https://data.wsdot.wa.gov/arcgis/rest/services/Shared/WebBaseMapWebMercator/MapServer"
+      url: basemapUrl
     })
   ],
   title: "WSDOT"
