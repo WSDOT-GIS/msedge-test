@@ -1,10 +1,10 @@
-import esriConfig = require("esri/config");
-import Basemap = require("esri/dijit/Basemap");
-import BasemapGallery = require("esri/dijit/BasemapGallery");
-import BasemapLayer = require("esri/dijit/BasemapLayer");
-import Extent = require("esri/geometry/Extent");
-import LOD = require("esri/layers/LOD");
-import EsriMap = require("esri/map");
+import esriConfig from "esri/config";
+import Basemap from "esri/dijit/Basemap";
+import BasemapGallery from "esri/dijit/BasemapGallery";
+import BasemapLayer from "esri/dijit/BasemapLayer";
+import Extent from "esri/geometry/Extent";
+import LOD from "esri/layers/LOD";
+import EsriMap from "esri/map";
 
 // Inform the API that data.wsdot.wa.gov supports CORS and HTTPS.
 for (const url of ["data.wsdot.wa.gov"]) {
